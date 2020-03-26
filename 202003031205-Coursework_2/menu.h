@@ -8,19 +8,19 @@ using namespace std;
 class Menu {
 private:
 	PetShop shop;
-	Customer* cust;
+	Customer cust;
 public:
 	// constructors
 	Menu(void);
-	Menu(PetShop petShop, Customer* customer);
+	Menu(PetShop petShop, Customer customer);
 	Menu(PetShop petShop);
-	Menu(Customer* customer);
+	Menu(Customer customer);
 	// setters
 	void setPetShop(PetShop petShop) { shop = petShop; };
-	void setCustomer(Customer* customer) { cust = customer; };
+	void setCustomer(Customer customer) { cust = customer; };
 	// getters
 	PetShop getPetShop() { return shop; };
-	Customer* getCustomer() { return cust; };
+	Customer getCustomer() { return cust; };
 	// utility functions
 	static void clear();
 	static void printLine(int amount, bool endLine);

@@ -29,7 +29,7 @@ int main() {
     cin >> age;
 
     // create customer
-    Customer* customer = new Customer(name, address, age);
+    Customer customer = Customer(name, address, age);
     shop.addCustomer(customer);
 
     // generate pets

@@ -8,14 +8,14 @@ using namespace std;
 // constructors
 Menu::Menu() {
 	PetShop petShop = PetShop();
-	Customer* customer = new Customer();
+	Customer customer = Customer();
 	petShop.addCustomer(customer);
 	setCustomer(customer);
 	setPetShop(petShop);
 };
 Menu::Menu(PetShop petShop) { setPetShop(petShop); };
-Menu::Menu(Customer* customer) { setCustomer(customer); };
-Menu::Menu(PetShop petShop, Customer* customer) { setPetShop(petShop); setCustomer(customer); };
+Menu::Menu(Customer customer) { setCustomer(customer); };
+Menu::Menu(PetShop petShop, Customer customer) { setPetShop(petShop); setCustomer(customer); };
 
 // utility functions
 void Menu::clear() { for (int i = 0; i < 100; i++) cout << endl; };
@@ -160,7 +160,7 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 	cout << "Enter 'y' for yes or 'n' for no:" << endl << "\t";
 	string input; cin >> input;
 	if (input == "y" || input == "Y") {
-		getCustomer()->adopt(pet);
+		getCustomer().adopt(pet);
 		cout << getPetShop().getPets().size() << endl;
 		getPetShop().removePet(petIndex);
 		cout << getPetShop().getPets().size() << endl;

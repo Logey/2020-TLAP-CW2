@@ -29,7 +29,7 @@ void PetShop::removePet(int petIndex) {
 	pets.erase(pets.begin()+petIndex);
 };
 
-void PetShop::addCustomer(Customer* customer) {
-	customer->setID(getNewCustomerID());
+void PetShop::addCustomer(Customer customer) {
+	customer.setID(getNewCustomerID());
 	customers.push_back(customer);
 };

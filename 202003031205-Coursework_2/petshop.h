@@ -14,16 +14,16 @@ private:
 		"Beagle", "Poodle", "Rottweiler", "German Shorthaired Pointer", "Yorkshire Terrier"};
 	vector<string> catBreeds = {"Siamese", "Persian", "Maine Coon", "Ragdoll", "Bengal", "Abyssinian", "Birman",
 		"Oriental Shorthair", "Sphynx", "Devon Rex", "Himalayan", "American Shorthair", "Russian Blue"};
-	vector<Customer*> customers = {};
+	vector<Customer> customers = {};
 public:
 	// getters
 	int getNewPetID() { return latestPetID++; };
 	int getNewCustomerID() { return latestCustomerID++; };
 	vector<Pet> getPets() { return pets; };
-	vector<Customer*> getCustomers() { return customers; };
+	vector<Customer> getCustomers() { return customers; };
 	// functions
 	void generatePets(int amount);
 	void addPet(Pet pet);
 	void removePet(int petIndex);
-	void addCustomer(Customer* customer);
+	void addCustomer(Customer customer);
 };
