@@ -54,10 +54,5 @@ void Customer::adopt(Pet pet) {
 };
 
 bool Customer::release(int index) {
-	try {
-		pets.erase(pets.begin()+index);
-		return true;
-	} catch (int e) { // index not found
-		return false;
-	}
+	pets.erase(pets.begin()+index);
 };
