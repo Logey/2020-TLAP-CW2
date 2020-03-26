@@ -33,18 +33,14 @@ void Menu::printLine(char character, bool endLine) { printLine(character, 50, en
 void Menu::printLine(int amount, bool endLine) { printLine('-', amount, endLine); };
 
 void Menu::displayError(string errorMessage) {
-	printLine();
+	cout << "-" << pad("ERROR!", 48) << "-" << endl;
 	cout << pad(errorMessage, 50) << endl;
 	printLine(true);
 	cout << endl;
 };
 
 void Menu::displayImportant(string message) {
-	printLine('#', 50, true);
-	cout << "#";
-	cout << pad(' ', "IMPORTANT!", 48);
-	cout << "#" << endl;
-	printLine('#', 50, true);
+	cout << pad('#', "IMPORTANT!", 50) << endl;
 	cout << pad('#', message, 50) << endl;
 	printLine('#', 50, true);
 	cout << endl;
@@ -69,7 +65,7 @@ string Menu::pad(char character, string message) { return pad(character, message
 void Menu::main(bool shouldClear) {
 	if (shouldClear) clear();
 	cout << "[MAIN MENU]  Please select an option by entering the corresponding number and pressing enter..." << endl;
-	cout << "\t1. View pets" << endl;
+	cout << "\t1. View the pet shop's pets" << endl;
 	cout << "\t2. QUIT" << endl;
 	int input; cin >> input;
 	if (input == 1) {
