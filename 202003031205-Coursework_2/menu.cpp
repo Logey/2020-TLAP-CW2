@@ -161,9 +161,7 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 	string input; cin >> input;
 	if (input == "y" || input == "Y") {
 		getCustomer().adopt(pet);
-		cout << getPetShop().getPets().size() << endl;
-		getPetShop().removePet(petIndex);
-		cout << getPetShop().getPets().size() << endl;
+		shop.removePet(petIndex);
 		clear();
 		displayError("You have just adopted " + pet.getName() + "!");
 		main(false);
