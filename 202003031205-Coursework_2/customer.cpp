@@ -34,7 +34,7 @@ Customer::Customer(int customerAge) {
 	setAddress("UNDEFINED");
 };
 
-Customer::Customer(void) {
+Customer::Customer() {
 	setName("UNDEFINED");
 	setAddress("UNDEFINED");
 	setAge(NULL);

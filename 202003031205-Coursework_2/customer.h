@@ -19,7 +19,7 @@ public:
 	Customer(string customerName, string customerAddress);
 	Customer(string customerName, int customerAge);
 	Customer(int customerAge);
-	Customer(void);
+	Customer();
 	// getters
 	string getName() { return name; };
 	string getAddress() { return address; };
