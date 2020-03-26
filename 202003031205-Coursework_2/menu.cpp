@@ -13,9 +13,9 @@ Menu::Menu() {
 	setCustomer(customer);
 	setPetShop(petShop);
 };
-Menu::Menu(PetShop petShop) { setPetShop(petShop); };
-Menu::Menu(Customer customer) { setCustomer(customer); };
-Menu::Menu(PetShop petShop, Customer customer) { setPetShop(petShop); setCustomer(customer); };
+Menu::Menu(PetShop petShop) { Menu(); setPetShop(petShop); };
+Menu::Menu(Customer customer) { Menu(); setCustomer(customer); };
+Menu::Menu(PetShop petShop, Customer customer) { Menu(); setPetShop(petShop); setCustomer(customer); };
 
 // utility functions
 void Menu::clear() { for (int i = 0; i < 100; i++) cout << endl; };
@@ -186,7 +186,7 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 	cout << "Enter 'y' for yes or 'n' for no:" << endl << "\t";
 	string input; cin >> input;
 	if (input == "y" || input == "Y") {
-		getCustomer().adopt(pet);
+		cust.adopt(pet);
 		shop.removePet(petIndex);
 		clear();
 		displayImportant("You have just adopted " + pet.getName() + "!");

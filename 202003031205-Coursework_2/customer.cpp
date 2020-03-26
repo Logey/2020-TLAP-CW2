@@ -53,6 +53,6 @@ void Customer::adopt(Pet pet) {
 	pets.push_back(pet);
 };
 
-bool Customer::release(int index) {
+void Customer::release(int index) {
 	pets.erase(pets.begin()+index);
 };

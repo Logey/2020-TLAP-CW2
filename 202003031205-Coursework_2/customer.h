@@ -34,5 +34,5 @@ public:
 	void setID(int customerID) { id = customerID; };
 	// functions
 	void adopt(Pet pet);
-	bool release(int index);
+	void release(int index);
 };
