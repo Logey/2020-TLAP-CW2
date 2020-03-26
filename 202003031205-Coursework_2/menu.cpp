@@ -81,7 +81,7 @@ void Menu::pets(int petIndex, bool shouldClear) {
 			petIndex = 0;
 		} else if (petIndex >= petList.size()) {
 			displayError("YOU ARE ALREADY VIEWING THE LAST PAGE!");
-			petIndex = petList.size() - 1; // TODO: check if correct
+			petIndex = petList.size() - 1;
 		}
 		petList[petIndex].display();
 	}
