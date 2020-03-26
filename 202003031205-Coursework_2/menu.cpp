@@ -83,8 +83,7 @@ void Menu::pets(int petIndex, bool shouldClear) {
 			displayError("YOU ARE ALREADY VIEWING THE LAST PAGE!");
 			petIndex = petList.size() - 1; // TODO: check if correct
 		}
-		//petList.at(petIndex)->display();
-		for (unsigned i = 0; i < petList.size(); ++i) petList[i].display();
+		petList[petIndex].display();
 	}
 	cout << "[PETS]  Please select an option by entering the corresponding number and pressing enter..." << endl;
 	cout << "\t1. Previous pet" << endl;
