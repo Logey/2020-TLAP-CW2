@@ -66,7 +66,8 @@ void Menu::main(bool shouldClear) {
 	if (shouldClear) clear();
 	cout << "[MAIN MENU]  Please select an option by entering the corresponding number and pressing enter..." << endl;
 	cout << "\t1. View the pet shop's pets" << endl;
-	cout << "\t2. QUIT" << endl;
+	cout << "\t2. View your pets" << endl;
+	cout << "\t3. QUIT" << endl;
 	int input; cin >> input;
 	if (input == 1) {
 		if (getPetShop().getPets().size() > 0) pets();
@@ -76,6 +77,13 @@ void Menu::main(bool shouldClear) {
 			main(false);
 		}
 	} else if (input == 2) {
+		if (getCustomer().getPets().size() > 0) customerPets();
+		else {
+			clear();
+			displayError("YOU DO NOT HAVE ANY PETS TO VIEW!");
+			main(false);
+		}
+	} else if (input == 3) {
 		clear();
 		cout << "Goodbye!" << endl;
 	} else {
@@ -120,6 +128,41 @@ void Menu::pets(int petIndex, bool shouldClear) {
 void Menu::pets(int petIndex) { pets(petIndex, true); };
 void Menu::pets(bool shouldClear) { pets(0, shouldClear); };
 void Menu::pets() { pets(0, true); };
+
+void Menu::customerPets(int petIndex, bool shouldClear) {
+	if (shouldClear) clear();
+	vector <Pet> petList = getCustomer().getPets();
+	if (petList.size() > 0) {
+		if (petIndex < 0) {
+			displayError("YOU ARE ALREADY VIEWING THE FIRST PAGE!");
+			petIndex = 0;
+		} else if (petIndex >= petList.size()) {
+			displayError("YOU ARE ALREADY VIEWING THE LAST PAGE!");
+			petIndex = petList.size() - 1;
+		}
+		petList[petIndex].display();
+	}
+	cout << "[YOUR PETS]  Please select an option by entering the corresponding number and pressing enter..." << endl;
+	cout << "\t1. Previous pet" << endl;
+	cout << "\t2. Next pet" << endl;
+	cout << "\t3. Jump to pet ID" << endl;
+	cout << "\t4. Release pet" << endl;
+	cout << "\t5. Back to menu" << endl;
+	int input; cin >> input;
+	if (input == 1) customerPets(petIndex - 1);
+	else if (input == 2) customerPets(petIndex + 1);
+	else if (input == 3) /* petID() but for customer pets */;
+	else if (input == 4) /* release customer pet */;
+	else if (input == 5) main();
+	else {
+		clear();
+		displayError("THAT IS NOT A VALID OPTION! TRY AGAIN!");
+		customerPets(petIndex, false);
+	}
+};
+void Menu::customerPets(int petIndex) { customerPets(petIndex, true); };
+void Menu::customerPets(bool shouldClear) { customerPets(0, shouldClear); };
+void Menu::customerPets() { customerPets(0, true); };
 
 void Menu::petID(bool shouldClear) {
 	if (shouldClear) clear();

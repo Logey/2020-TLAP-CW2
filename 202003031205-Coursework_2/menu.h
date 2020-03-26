@@ -44,6 +44,10 @@ public:
 	void pets(int petIndex, bool shouldClear);
 	void pets(bool shouldClear);
 	void pets();
+	void customerPets(int petIndex, bool shouldClear);
+	void customerPets(int petIndex);
+	void customerPets(bool shouldClear);
+	void customerPets();
 	void petID(bool shouldClear);
 	void petID();
 	void adopt(int petIndex, bool shouldClear);
