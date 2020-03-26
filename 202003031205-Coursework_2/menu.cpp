@@ -73,36 +73,6 @@ void Menu::main(bool shouldClear) {
 void Menu::main() { main(true); };
 
 void Menu::pets(int petIndex, bool shouldClear) {
-	//if (shouldClear) clear();
-	//vector <Pet*> petList = getPetShop().getPets();
-	//if (petList.size() > 0) {
-	//	if (petIndex < 0) {
-	//		displayError("YOU ARE ALREADY VIEWING THE FIRST PAGE!");
-	//		petIndex = 0;
-	//	} else if (petIndex >= petList.size()) {
-	//		displayError("YOU ARE ALREADY VIEWING THE LAST PAGE!");
-	//		petIndex = petList.size()-1;
-	//	}
-	//	if (petList.size() > 0) petList.at(petIndex)->display();
-	//}
-	//cout << "[PETS]  Please select an option by entering the corresponding number and pressing enter..." << endl;
-	//cout << "\t1. Previous pet" << endl;
-	//cout << "\t2. Next pet" << endl;
-	//cout << "\t3. Jump to pet ID" << endl;
-	//cout << "\t4. Adopt pet" << endl;
-	//cout << "\t5. Back to menu" << endl;
-	//int input; cin >> input;
-	//if (input == 1) pets(petIndex - 1);
-	//else if (input == 2) pets(petIndex + 1);
-	//else if (input == 3) petID();
-	//else if (input == 4) adopt(petIndex, true);
-	//else if (input == 5) main();
-	//else {
-	//	clear();
-	//	displayError("THAT IS NOT A VALID OPTION! TRY AGAIN!");
-	//	pets(petIndex, false);
-	//}
-
 	if (shouldClear) clear();
 	vector <Pet> petList = getPetShop().getPets();
 	if (petList.size() > 0) {
