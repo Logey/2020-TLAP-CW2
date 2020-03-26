@@ -15,7 +15,7 @@ Pet::Pet() {
 void Pet::display() {
 	string firstLine = "ID: " + to_string(getID()) + " ";
 	cout << firstLine;
-	Menu::printLine(50 - firstLine.length(), true);
+	Menu::printLine(static_cast<int>(50 - firstLine.length()), true);
 	cout << "\tAnimal (Breed):\t" << getPetType() << endl;
 	cout << "\tName:\t\t" << getName() << endl;
 	cout << "\tEnergy Level:\t" << getEnergyLevel() << endl;

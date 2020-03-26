@@ -23,12 +23,20 @@ public:
 	Customer getCustomer() { return cust; };
 	// utility functions
 	static void clear();
+	static void printLine(char character, int amount, bool endLine);
+	static void printLine(char character, int amount);
+	static void printLine(char character, bool endLine);
+	static void printLine(char character);
 	static void printLine(int amount, bool endLine);
 	static void printLine(int amount);
 	static void printLine(bool endLine);
 	static void printLine();
 	static void displayError(string errorMessage);
+	static void displayImportant(string message);
+	static string pad(char character, string message, int length);
 	static string pad(string message, int length);
+	static string pad(string message);
+	static string pad(char character, string message);
 	// menu functions
 	void main(bool shouldClear);
 	void main();

@@ -20,32 +20,50 @@ Menu::Menu(PetShop petShop, Customer customer) { setPetShop(petShop); setCustome
 // utility functions
 void Menu::clear() { for (int i = 0; i < 100; i++) cout << endl; };
 
-void Menu::printLine(int amount, bool endLine) {
-	for (int i = 0; i < amount; i++) cout << "-";
+void Menu::printLine(char character, int amount, bool endLine) {
+	for (int i = 0; i < amount; i++) cout << character;
 	if (endLine) cout << endl;
 };
-void Menu::printLine() { printLine(50, true); };
-void Menu::printLine(int amount) { printLine(amount, true); };
-void Menu::printLine(bool endLine) { printLine(50, endLine); };
+void Menu::printLine() { printLine('-', 50, true); };
+void Menu::printLine(int amount) { printLine('-', amount, true); };
+void Menu::printLine(bool endLine) { printLine('-', 50, endLine); };
+void Menu::printLine(char character, int amount) { printLine(character, amount, true); };
+void Menu::printLine(char character) { printLine(character, 50, true); };
+void Menu::printLine(char character, bool endLine) { printLine(character, 50, endLine); };
+void Menu::printLine(int amount, bool endLine) { printLine('-', amount, endLine); };
 
 void Menu::displayError(string errorMessage) {
 	printLine();
 	cout << pad(errorMessage, 50) << endl;
-	printLine();
+	printLine(true);
 	cout << endl;
 };
 
-string Menu::pad(string message, int length) {
+void Menu::displayImportant(string message) {
+	printLine('#', 50, true);
+	cout << "#";
+	cout << pad(' ', "IMPORTANT!", 48);
+	cout << "#" << endl;
+	printLine('#', 50, true);
+	cout << pad('#', message, 50) << endl;
+	printLine('#', 50, true);
+	cout << endl;
+};
+
+string Menu::pad(char character, string message, int length) {
 	string result = "";
 	float padAmount = (length - message.length()) / 2.0f;
-	for (int i = 0; i < (int)padAmount-1; i++) result += "-";
+	for (int i = 0; i < (int)padAmount-1; i++) result += character;
 	result += " ";
 	result += message;
 	result += " ";
 	if (fmod(padAmount, 1) > 0) padAmount++;
-	for (int i = 0; i < (int)padAmount-1; i++) result += "-";
+	for (int i = 0; i < (int)padAmount-1; i++) result += character;
 	return result;
 };
+string Menu::pad(string message, int length) { return pad('-', message, length); };
+string Menu::pad(string message) { return pad('-', message, 50); };
+string Menu::pad(char character, string message) { return pad(character, message, 50); };
 
 // menu functions
 void Menu::main(bool shouldClear) {
@@ -132,7 +150,7 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 		getCustomer().adopt(pet);
 		shop.removePet(petIndex);
 		clear();
-		displayError("You have just adopted " + pet.getName() + "!");
+		displayImportant("You have just adopted " + pet.getName() + "!");
 		main(false);
 	} else if (input == "n" || input == "N") pets(petIndex, true);
 	else {
