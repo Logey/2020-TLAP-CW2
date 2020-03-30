@@ -61,6 +61,11 @@ string Menu::pad(string message, int length) { return pad('-', message, length);
 string Menu::pad(string message) { return pad('-', message, 50); };
 string Menu::pad(char character, string message) { return pad(character, message, 50); };
 
+double Menu::calculateCost(double cost, int discount) {
+	if (discount == 0) return cost;
+	return cost - (cost / 100 * discount);
+};
+
 // menu functions
 void Menu::main(bool shouldClear) {
 	if (shouldClear) clear();
@@ -151,8 +156,8 @@ void Menu::customerPets(int petIndex, bool shouldClear) {
 	int input; cin >> input;
 	if (input == 1) customerPets(petIndex - 1);
 	else if (input == 2) customerPets(petIndex + 1);
-	else if (input == 3) /* petID() but for customer pets */;
-	else if (input == 4) /* release customer pet */;
+	else if (input == 3) /* TODO: petID() but for customer pets */;
+	else if (input == 4) /* TODO: release customer pet */;
 	else if (input == 5) main();
 	else {
 		clear();
@@ -187,9 +192,11 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 	if (shouldClear) clear();
 	cout << "[ADOPT]  You are about to adopt the following pet:" << endl << endl;
 	vector<Pet> petList = getPetShop().getPets();
-	Pet pet = petList.at(petIndex);
+	Pet pet = petList[petIndex];
 	pet.display();
-	cout << endl << "Are you sure you want to adopt this pet?" << endl;
+	double petCost = calculateCost(pet.getCost(), cust.getDiscount());
+	cout << endl << "Adopting " << pet.getName() << " will cost " << petCost << "." << endl;
+	cout << "Are you sure you want to adopt this pet?" << endl;
 	cout << "Enter 'y' for yes or 'n' for no:" << endl << "\t";
 	string input; cin >> input;
 	if (input == "y" || input == "Y") {

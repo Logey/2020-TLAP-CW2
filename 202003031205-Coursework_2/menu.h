@@ -37,6 +37,7 @@ public:
 	static string pad(string message, int length);
 	static string pad(string message);
 	static string pad(char character, string message);
+	static double calculateCost(double cost, int discount);
 	// menu functions
 	void main(bool shouldClear);
 	void main();
