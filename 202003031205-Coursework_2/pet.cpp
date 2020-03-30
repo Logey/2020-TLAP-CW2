@@ -21,5 +21,6 @@ void Pet::display() {
 	cout << "\tEnergy Level:\t" << getEnergyLevel() << endl;
 	cout << "\tHunger Level:\t" << getHungerLevel() << endl;
 	cout << "\tFriendliness:\t" << getFriendliness() << endl;
+	cout << "\tCost:\t\t" << getCost() << endl;
 	Menu::printLine(50, true);
 };
