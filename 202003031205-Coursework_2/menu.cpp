@@ -195,7 +195,7 @@ void Menu::adopt(int petIndex, bool shouldClear) {
 	Pet pet = petList[petIndex];
 	pet.display();
 	double petCost = calculateCost(pet.getCost(), cust.getDiscount());
-	cout << endl << "Adopting " << pet.getName() << " will cost " << petCost << "." << endl;
+	cout << endl << "Adopting " << pet.getName() << " will cost " << petCost << (cust.getDiscount() ? " ("+to_string(cust.getDiscount())+"% off!)" : "") << "." << endl;
 	cout << "Are you sure you want to adopt this pet?" << endl;
 	cout << "Enter 'y' for yes or 'n' for no:" << endl << "\t";
 	string input; cin >> input;
