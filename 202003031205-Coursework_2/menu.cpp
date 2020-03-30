@@ -166,13 +166,20 @@ void Menu::customerPets() { customerPets(0, true); };
 
 void Menu::petID(bool shouldClear) {
 	if (shouldClear) clear();
-	cout << "[PETS/ID]  Please enter the ID of the pet you wish to view..." << endl;
-	int input; cin >> input;
-	if (input < 0 || input >= getPetShop().getPets().size()) {
-		clear();
-		displayError("THAT IS NOT A VALID PET ID! TRY AGAIN!");
-		petID(false);
-	} else pets(input, true);
+	cout << "[PETS/ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
+	vector<Pet> petList = getPetShop().getPets();
+	string input; cin >> input;
+	if (input == "cancel") return main();
+
+	int id = stoi(input);
+	// check if pet id exists, otherwise display error
+	for (int i = 0; i < petList.size(); i++) {
+		Pet pet = petList[i];
+		if (pet.getID() == id) return pets(i, true);
+	}
+	clear();
+	displayError("THAT IS NOT A VALID PET ID! TRY AGAIN!");
+	petID(false);
 };
 void Menu::petID() { petID(true); };
 
