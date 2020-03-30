@@ -11,11 +11,13 @@ void PetShop::generatePets(int amount) {
 			string breed = dogBreeds.at(rand() % dogBreeds.size());
 			Dog dog = Dog(breed, name);
 			dog.setID(getNewPetID());
+			dog.setCost(400.00 + (rand() % 200));
 			addPet(dog);
 		} else if (petType == 1) {
 			string breed = catBreeds.at(rand() % catBreeds.size());
 			Cat cat = Cat(breed, name);
 			cat.setID(getNewPetID());
+			cat.setCost(400.00 + (rand() % 200));
 			addPet(cat);
 		}
 	}
