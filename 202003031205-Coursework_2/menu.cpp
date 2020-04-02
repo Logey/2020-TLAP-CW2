@@ -156,7 +156,7 @@ void Menu::customerPets(int petIndex, bool shouldClear) {
 	int input; cin >> input;
 	if (input == 1) customerPets(petIndex - 1);
 	else if (input == 2) customerPets(petIndex + 1);
-	else if (input == 3) /* TODO: petID() but for customer pets */;
+	else if (input == 3) customerPetID();
 	else if (input == 4) /* TODO: release customer pet */;
 	else if (input == 5) main();
 	else {
@@ -187,6 +187,25 @@ void Menu::petID(bool shouldClear) {
 	petID(false);
 };
 void Menu::petID() { petID(true); };
+
+void Menu::customerPetID(bool shouldClear) {
+	if (shouldClear) clear();
+	cout << "[YOUR PETS/ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
+	vector<Pet> petList = getCustomer().getPets();
+	string input; cin >> input;
+	if (input == "cancel") return main();
+
+	int id = stoi(input);
+	// check if pet id exists, otherwise display error
+	for (int i = 0; i < petList.size(); i++) {
+		Pet pet = petList[i];
+		if (pet.getID() == id) return customerPets(i, true);
+	}
+	clear();
+	displayError("YOU DO NOT OWN A PET WITH THAT ID!");
+	customerPetID(false);
+};
+void Menu::customerPetID() { customerPetID(true); };
 
 void Menu::adopt(int petIndex, bool shouldClear) {
 	if (shouldClear) clear();

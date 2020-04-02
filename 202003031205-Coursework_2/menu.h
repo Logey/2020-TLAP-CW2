@@ -51,6 +51,8 @@ public:
 	void customerPets();
 	void petID(bool shouldClear);
 	void petID();
+	void customerPetID(bool shouldClear);
+	void customerPetID();
 	void adopt(int petIndex, bool shouldClear);
 	void adopt(int petIndex);
 	void adopt(bool shouldClear);
