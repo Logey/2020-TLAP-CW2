@@ -14,8 +14,7 @@ protected:
 		moodIndex,
 		energyLevel,
 		hungerLevel,
-		friendliness,
-		purchaseCount;
+		friendliness;
 	double cost = 0.00;
 public:
 	// constructors
@@ -38,7 +37,6 @@ public:
 	int getEnergyLevel() { return energyLevel; };
 	int getHungerLevel() { return hungerLevel; };
 	int getFriendliness() { return friendliness; };
-	int getPurchaseCount() { return purchaseCount; };
 	bool isTrial() { return trialPet; };
 	double getCost() { return cost; };
 	string getPetType() { return type; };
