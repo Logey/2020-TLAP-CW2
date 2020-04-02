@@ -112,7 +112,7 @@ void Menu::pets(int petIndex, bool shouldClear) {
 		}
 		petList[petIndex].display();
 	}
-	cout << "[PETS]  Please select an option by entering the corresponding number and pressing enter..." << endl;
+	cout << "[PET SHOP]  Please select an option by entering the corresponding number and pressing enter..." << endl;
 	cout << "\t1. Previous pet" << endl;
 	cout << "\t2. Next pet" << endl;
 	cout << "\t3. Jump to pet ID" << endl;
@@ -157,7 +157,7 @@ void Menu::customerPets(int petIndex, bool shouldClear) {
 	if (input == 1) customerPets(petIndex - 1);
 	else if (input == 2) customerPets(petIndex + 1);
 	else if (input == 3) customerPetID();
-	else if (input == 4) /* TODO: release customer pet */;
+	else if (input == 4) release(petIndex);
 	else if (input == 5) main();
 	else {
 		clear();
@@ -171,7 +171,7 @@ void Menu::customerPets() { customerPets(0, true); };
 
 void Menu::petID(bool shouldClear) {
 	if (shouldClear) clear();
-	cout << "[PETS/ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
+	cout << "[PET SHOP / ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
 	vector<Pet> petList = getPetShop().getPets();
 	string input; cin >> input;
 	if (input == "cancel") return main();
@@ -190,7 +190,7 @@ void Menu::petID() { petID(true); };
 
 void Menu::customerPetID(bool shouldClear) {
 	if (shouldClear) clear();
-	cout << "[YOUR PETS/ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
+	cout << "[YOUR PETS / ID]  Please enter the ID of the pet you wish to view. Alternatively, type 'cancel' to go back to the main menu." << endl;
 	vector<Pet> petList = getCustomer().getPets();
 	string input; cin >> input;
 	if (input == "cancel") return main();
@@ -209,7 +209,7 @@ void Menu::customerPetID() { customerPetID(true); };
 
 void Menu::adopt(int petIndex, bool shouldClear) {
 	if (shouldClear) clear();
-	cout << "[ADOPT]  You are about to adopt the following pet:" << endl << endl;
+	cout << "[PET SHOP / ADOPT]  You are about to adopt the following pet:" << endl << endl;
 	vector<Pet> petList = getPetShop().getPets();
 	Pet pet = petList[petIndex];
 	pet.display();
@@ -239,12 +239,55 @@ void Menu::adopt(bool shouldClear) {
 	else {
 		int petIndex = stoi(input);
 		vector<Pet> petList = getPetShop().getPets();
-		if (petIndex < 0 || petIndex >= petList.size()) {
-			clear();
-			displayError("THAT IS NOT A VALID PET ID! TRY AGAIN!");
-			adopt(false);
-		} else adopt(petIndex, true);
+		for (int i = 0; i < petList.size(); i++) {
+			Pet pet = petList[i];
+			if (pet.getID() == petIndex) return adopt(i, true);
+		}
+		clear();
+		displayError("THAT IS NOT A VALID PET ID! TRY AGAIN!");
+		adopt(false);
 	}
 };
 void Menu::adopt() { adopt(true); };
 void Menu::adopt(int petIndex) { adopt(petIndex, true); };
+
+void Menu::release(int petIndex, bool shouldClear) {
+	if (shouldClear) clear();
+	cout << "[YOUR PETS / RELEASE]  You are about to release the following pet:" << endl << endl;
+	vector<Pet> petList = cust.getPets();
+	Pet pet = petList[petIndex];
+	pet.display();
+	cout << "Are you sure you want to release this pet? " << pet.getName() << " will be gone forever." << endl;
+	cout << "Enter 'y' for yes or 'n' for no:" << endl << "\t";
+	string input; cin >> input;
+	if (input == "y" || input == "Y") {
+		cust.release(petIndex);
+		clear();
+		displayImportant("You have just released " + pet.getName() + "!");
+		main(false);
+	} else if (input == "n" || input == "N") customerPets(petIndex, true);
+	else {
+		clear();
+		displayError("THAT WAS AN INCORRECT RESPONSE. TRY AGAIN!");
+		release(petIndex, false);
+	}
+};
+void Menu::release(bool shouldClear) {
+	if (shouldClear) clear();
+	cout << "[RELEASE]  Please enter the ID of the pet you wish to release and press enter. Alternatively, type 'cancel' to go back to the main menu." << endl;
+	string input; cin >> input;
+	if (input == "cancel") main();
+	else {
+		int petIndex = stoi(input);
+		vector<Pet> petList = cust.getPets();
+		for (int i = 0; i < petList.size(); i++) {
+			Pet pet = petList[i];
+			if (pet.getID() == petIndex) return release(i, true);
+		}
+		clear();
+		displayError("YOU DO NOT OWN A PET WITH THAT ID!");
+		release(false);
+	}
+};
+void Menu::release() { release(true); };
+void Menu::release(int petIndex) { release(petIndex, true); };

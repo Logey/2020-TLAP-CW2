@@ -57,4 +57,8 @@ public:
 	void adopt(int petIndex);
 	void adopt(bool shouldClear);
 	void adopt();
+	void release(int petIndex, bool shouldClear);
+	void release(int petIndex);
+	void release(bool shouldClear);
+	void release();
 };
